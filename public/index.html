@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PassportSnap — Professional Passport Photos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg-grid"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M5 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">Passport<em>Snap</em></span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#sizes">Sizes</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="header-cta">
+        <span class="badge-live">● LIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-tag">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+      AI-Powered Photo Processing
+    </div>
+    <h1 class="hero-title">
+      Government-Ready<br><em>Passport Photos</em><br>in Seconds
+    </h1>
+    <p class="hero-sub">Upload any photo — we'll resize, enhance, remove backgrounds, and print-ready format your passport photo for any country's requirements.</p>
+    <div class="hero-stats">
+      <div class="stat"><span>35+</span><small>Countries</small></div>
+      <div class="stat"><span>600</span><small>DPI Output</small></div>
+      <div class="stat"><span>97%</span><small>Quality</small></div>
+    </div>
+  </section>
+
+  <!-- Main Tool -->
+  <main class="tool-container" id="tool">
+    <div class="tool-card">
+
+      <!-- Step Indicator -->
+      <div class="steps">
+        <div class="step active" id="step-1">
+          <div class="step-num">1</div>
+          <span>Upload</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-2">
+          <div class="step-num">2</div>
+          <span>Configure</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-3">
+          <div class="step-num">3</div>
+          <span>Download</span>
+        </div>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="panel" id="panel-upload">
+        <div class="upload-zone" id="dropZone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <div class="upload-content">
+            <div class="upload-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <path d="M24 32V20M18 26l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 36h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Drop your photo here</h3>
+            <p>or <button class="link-btn" onclick="document.getElementById('fileInput').click()">browse files</button></p>
+            <div class="upload-formats">JPG, PNG, WEBP — Max 10MB</div>
+          </div>
+        </div>
+
+        <div class="photo-preview" id="photoPreview" style="display:none">
+          <div class="preview-img-wrap">
+            <img id="previewImg" src="" alt="Preview">
+            <button class="remove-photo-btn" id="removePhoto" title="Remove photo">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="preview-info">
+            <div class="preview-label">Selected Photo</div>
+            <div class="preview-name" id="previewName">photo.jpg</div>
+            <div class="preview-size" id="previewSize">0 KB</div>
+            <button class="btn-primary" id="nextToConfig">Continue →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configuration Panel -->
+      <div class="panel" id="panel-config" style="display:none">
+        <div class="config-grid">
+
+          <!-- Country/Size Selector -->
+          <div class="config-section">
+            <label class="config-label">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/><path d="M8 1c0 0-3 3.5-3 7s3 7 3 7M8 1c0 0 3 3.5 3 7s-3 7-3 7M1 8h14" stroke="currentColor" stroke-width="1.2"/></svg>
+              Passport Type / Country
+            </label>
+            <div class="size-grid" id="sizeGrid">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+
+          <!-- Background Color -->
+          <div class="config-section">
+            <label class="config-label">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Background Color
+            </label>
+            <div class="bg-options">
+              <button class="bg-btn active" data-bg="white" title="White">
+                <span class="bg-swatch" style="background:#fff;border:2px solid #ddd"></span>
+                <small>White</small>
+              </button>
+              <button class="bg-btn" data-bg="blue" title="Blue">
+                <span class="bg-swatch" style="background:#4372C1"></span>
+                <small>Blue</small>
+              </button>
+              <button class="bg-btn" data-bg="gray" title="Light Gray">
+                <span class="bg-swatch" style="background:#C8C8C8"></span>
+                <small>Gray</small>
+              </button>
+              <button class="bg-btn" data-bg="custom" title="Custom">
+                <span class="bg-swatch custom-swatch">
+                  <input type="color" id="customBgColor" value="#E8F4F8">
+                </span>
+                <small>Custom</small>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remove Background Toggle -->
+          <div class="config-section">
+            <label class="config-label">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L14 2M6 2H2v4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              AI Background Removal
+            </label>
+            <div class="toggle-group">
+              <label class="toggle-switch">
+                <input type="checkbox" id="removeBgToggle">
+                <span class="toggle-track">
+                  <span class="toggle-thumb"></span>
+                </span>
+              </label>
+              <div class="toggle-info">
+                <span class="toggle-label" id="toggleLabel">Off</span>
+                <small class="toggle-desc" id="toggleDesc">Requires API key in .env</small>
+              </div>
+            </div>
+            <div class="bg-removal-note" id="bgNote">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 6v4M7 4.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Configure API key in <code>.env</code> for automatic BG removal. Free keys available from remove.bg (50/mo) or PhotoRoom (100/mo).
+            </div>
+          </div>
+
+          <!-- Print Count -->
+          <div class="config-section">
+            <label class="config-label">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M5 10h6M5 12h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Photos Per Sheet
+            </label>
+            <div class="count-selector">
+              <button class="count-btn" id="countMinus" onclick="adjustCount(-1)">−</button>
+              <div class="count-display">
+                <span id="countValue">4</span>
+                <small>photos</small>
+              </div>
+              <button class="count-btn" id="countPlus" onclick="adjustCount(1)">+</button>
+            </div>
+            <div class="count-range-hint">Min: 2 · Max: 6 photos per A4 sheet</div>
+          </div>
+
+        </div>
+
+        <div class="config-actions">
+          <button class="btn-ghost" onclick="goBack()">← Back</button>
+          <button class="btn-primary" id="processBtn" onclick="processPhoto()">
+            <span id="processBtnText">Generate Photos</span>
+            <div class="btn-spinner" id="btnSpinner" style="display:none">
+              <div class="spinner"></div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="panel" id="panel-result" style="display:none">
+        <div class="result-header">
+          <div class="result-badge">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#10b981"/><path d="M5.5 10l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Photos Ready!
+          </div>
+          <p>Your professional passport photos are processed and ready to download or print.</p>
+        </div>
+
+        <div class="result-grid">
+          <!-- Single Photo -->
+          <div class="result-card">
+            <div class="result-card-header">
+              <div class="result-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 16c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="result-card-title">Single Photo</div>
+                <div class="result-card-sub" id="singleSizeLabel">35×45mm · 600 DPI</div>
+              </div>
+            </div>
+            <div class="result-img-wrap">
+              <img id="singleResult" src="" alt="Passport Photo">
+            </div>
+            <div class="result-actions">
+              <a class="btn-download" id="downloadSingle" download="passport_photo.jpg">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 8l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download
+              </a>
+            </div>
+          </div>
+
+          <!-- Print Sheet -->
+          <div class="result-card result-card-wide">
+            <div class="result-card-header">
+              <div class="result-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="5" width="16" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 5V3.5A1.5 1.5 0 016.5 2h5A1.5 1.5 0 0113 3.5V5M5 13h8M6 9.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="result-card-title">Print Sheet (A4)</div>
+                <div class="result-card-sub" id="sheetCountLabel">4 photos · 600 DPI</div>
+              </div>
+            </div>
+            <div class="result-img-wrap sheet-preview">
+              <img id="sheetResult" src="" alt="Print Sheet">
+              <div class="sheet-overlay">
+                <span>A4 Print Sheet</span>
+              </div>
+            </div>
+            <div class="result-actions">
+              <a class="btn-download" id="downloadSheet" download="passport_sheet.jpg">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 8l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download Sheet
+              </a>
+              <button class="btn-print" onclick="printSheet()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="6" width="12" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M5 6V3a1 1 0 011-1h4a1 1 0 011 1v3M5 12h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Print
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Tips -->
+        <div class="tips-bar">
+          <div class="tip">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#f59e0b" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Print on matte photo paper for best results
+          </div>
+          <div class="tip">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#f59e0b" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Cut carefully along the dashed guides
+          </div>
+          <div class="tip">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#f59e0b" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/></svg>
+            600 DPI · Government accepted quality
+          </div>
+        </div>
+
+        <div class="result-footer">
+          <button class="btn-ghost" onclick="startOver()">← Process Another Photo</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ad Banner Area (Monetization) -->
+    <aside class="ad-sidebar">
+      <div class="ad-unit">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+          <div class="ad-placeholder-inner">
+            <!-- Place Google AdSense or other ad code here -->
+            <div class="ad-icon">💰</div>
+            <p>Your Ad Here</p>
+            <small>300×250 Banner</small>
+          </div>
+        </div>
+      </div>
+      <div class="tips-card">
+        <h4>📸 Photo Tips</h4>
+        <ul>
+          <li>Use natural, even lighting</li>
+          <li>Plain, light background works best</li>
+          <li>Face should be centered and clear</li>
+          <li>Neutral expression, eyes open</li>
+          <li>No glasses or accessories</li>
+          <li>Recent photo (within 6 months)</li>
+        </ul>
+      </div>
+      <div class="ad-unit">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+          <div class="ad-placeholder-inner">
+            <div class="ad-icon">💰</div>
+            <p>Your Ad Here</p>
+            <small>300×250 Banner</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <h2 class="section-title">Why <em>PassportSnap</em>?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Precise Sizing</h3>
+        <p>Pixel-perfect passport sizes for 35+ countries. 600 DPI output guaranteed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Background</h3>
+        <p>Automatic background removal and replacement with government-compliant colors.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🖨️</div>
+        <h3>Print-Ready</h3>
+        <p>A4 print sheets with 2–6 photos, cut guides, and professional spacing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Processing</h3>
+        <p>Photo enhancement, sharpening, and color correction in under 10 seconds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Private & Secure</h3>
+        <p>Photos are auto-deleted after 1 hour. Nothing stored permanently.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Works on any device. Upload directly from your phone camera.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Passport<em>Snap</em></div>
+      <p>Professional passport photos for government documents worldwide.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-note">Photos auto-deleted after 1 hour · 600 DPI output · Government accepted</div>
+    </div>
+  </footer>
+
+  <!-- Loading Overlay -->
+  <div class="processing-overlay" id="processingOverlay" style="display:none">
+    <div class="processing-card">
+      <div class="processing-animation">
+        <div class="proc-ring"></div>
+        <div class="proc-ring"></div>
+        <div class="proc-ring"></div>
+        <div class="proc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="11" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M6 25c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <h3 id="processingStatus">Processing Photo…</h3>
+      <div class="proc-steps">
+        <div class="proc-step active" id="ps1">Enhancing quality</div>
+        <div class="proc-step" id="ps2">Resizing to passport dimensions</div>
+        <div class="proc-step" id="ps3">Creating print sheet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Frame -->
+  <iframe id="printFrame" style="display:none"></iframe>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
