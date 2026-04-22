@@ -2,6 +2,14 @@
   "name": "passport-photo-tool",
   "version": "1.0.0",
   "description": "Professional Passport Photo Tool",
+  "homepage": "https://github.com/gyungl98-alt/photo#readme",
+  "bugs": {
+    "url": "https://github.com/gyungl98-alt/photo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gyungl98-alt/photo.git"
+  },
   "license": "ISC",
   "author": "",
   "type": "commonjs",
